@@ -32,8 +32,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': 'PageController.homepage',
-  '/dashboard': 'PageController.dashboard',
+  '/':                            'PageController.homepage',
+  '/dashboard':                   'PageController.dashboard',
 
   /***************************************************************************
   *                                                                          *
@@ -44,13 +44,15 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+  'get /dashboard/news':          'PageController.news',
 
-  'get /login':     'AuthController.login',
-  'post /logout':   'AuthController.logout',
-  'get /register':  'AuthController.register',
 
-  'post /auth/local':         'AuthController.callback',
-  'post /auth/local/:action': 'AuthController.callback',
+  'get /login':                   'AuthController.login',
+  'post /logout':                 'AuthController.logout',
+  'get /register':                'AuthController.register',
+
+  'post /auth/local':             'AuthController.callback',
+  'post /auth/local/:action':     'AuthController.callback',
 
   'get /auth/:provider':          'AuthController.provider',
   'get /auth/:provider/callback': 'AuthController.callback',

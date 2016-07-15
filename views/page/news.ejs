@@ -1,0 +1,15 @@
+/* List all news */
+<% if(typeof news !== 'undefined') { %>
+                <% _.each(news, function(newsArticle){ %>
+
+                    <div>
+                        <h1><%= newsArticle.topic %></h1>
+                        <h1><%= newsArticle.content %></h1>
+                        <h1><%= newsArticle.description %></h1>
+                        <h1><%= newsArticle.image %></h1>
+                        <h1><%= newsArticle.externalLink %></h1>
+                        <h1><%= newsArticle.createdAt %></h1>
+                    </div>
+
+                <% }); %>
+<% } %>

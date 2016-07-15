@@ -16,28 +16,30 @@ module.exports = {
    */
   homepage: function (req, res) {
 
+    // Config
+    var viewConfig = {
+      view: 'homepage',
+      layout: 'layout'
+    }
+
+    // Find news and return view
     News.find().limit(mainPageNewsLimit).exec(function afterFind(err, news) {
 
       if(err){
 
         sails.log.error(err);
 
-        return res.view({
-          view: 'homepage',
-          layout: 'layout',
-          error: err
-        });
+        viewConfig.error = err;
+
+        return res.view(viewConfig);
+
+      }else{
+
+        viewConfig.locals = {news: news};
+
+        return res.view(viewConfig);
 
       }
-
-      return res.view({
-        view: 'homepage',
-        layout: 'layout',
-        locals: {
-          news: news
-        }
-      });
-
     })
 
   },
@@ -46,10 +48,28 @@ module.exports = {
    * `PageController.dashboard()`
    */
   dashboard: function (req, res) {
-    return res.view({
+
+    // Config
+    var viewConfig = {
       view: 'dashboard',
       layout: 'layoutDashboard'
-    });
+    }
+
+    return res.view(viewConfig);
+  },
+
+  /**
+   * `PageController.dashboard()`
+   */
+  news: function (req, res) {
+
+    // Config
+    var viewConfig = {
+      view: 'news',
+      layout: 'layoutDashboard'
+    }
+
+    return res.view(viewConfig);
   },
 
 };
