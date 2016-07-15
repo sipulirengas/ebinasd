@@ -1,0 +1,13 @@
+
+<% if(typeof news !== 'undefined') { %>
+                
+    <form class="updateModel" model="news" model-id="<%= news.id %>">
+      <input name="topic" value="<%= news.topic %>" required>
+      <input name="content" value="<%= news.content %>" required>
+      <input name="description" value="<%= news.description %>" required>
+      <input name="image" value="<%= news.image %>">
+      <input name="externalLink" value="<%= news.externalLink %>">
+      <input type="submit" name="submit" />
+    </form>
+
+<% } %>

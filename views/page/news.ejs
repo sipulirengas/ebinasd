@@ -1,15 +1,34 @@
-/* List all news */
+
 <% if(typeof news !== 'undefined') { %>
-                <% _.each(news, function(newsArticle){ %>
+                
+    <table class="table table-striped" >
+        <thead>
+            <th>id</th>
+            <th>topic</th>
+            <th>content</th>
+            <th>description</th>
+            <th>image</th>
+            <th>externalLink</th>
+            <th>createdAt</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <% _.each(news, function(newsArticle){ %>
+                <tr>
+                    <td><%= newsArticle.id %></td>
+                    <td><%= newsArticle.topic %></td>
+                    <td><%= newsArticle.content %></td>
+                    <td><%= newsArticle.description %></td>
+                    <td><%= newsArticle.image %></td>
+                    <td><%= newsArticle.externalLink %></td>
+                    <td><%= newsArticle.createdAt %></td>
+                    <td class="actions">
+                        <a href="news/edit/<%= newsArticle.id %>" class="edit btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                        <a model="news" model-id="<%= newsArticle.id %>" class="delete btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
 
-                    <div>
-                        <h1><%= newsArticle.topic %></h1>
-                        <h1><%= newsArticle.content %></h1>
-                        <h1><%= newsArticle.description %></h1>
-                        <h1><%= newsArticle.image %></h1>
-                        <h1><%= newsArticle.externalLink %></h1>
-                        <h1><%= newsArticle.createdAt %></h1>
-                    </div>
-
-                <% }); %>
 <% } %>

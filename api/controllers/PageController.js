@@ -69,7 +69,76 @@ module.exports = {
       layout: 'layoutDashboard'
     }
 
+    // Find news and return view
+    News.find().exec(function afterFind(err, news) {
+
+      if(err){
+
+        sails.log.error(err);
+
+        viewConfig.error = err;
+
+        return res.view(viewConfig);
+
+      }else{
+
+        viewConfig.locals = {news: news};
+
+        return res.view(viewConfig);
+
+      }
+    })
+  },
+
+  /**
+   * `PageController.dashboard()`
+   */
+  newsEdit: function (req, res) {
+
+    // Config
+    var viewConfig = {
+      view: 'newsEdit',
+      layout: 'layoutDashboard'
+    }
+
+    var id = req.param('id')
+
+    // Find news and return view
+    News.findOne({id: id}).exec(function afterFind(err, news) {
+
+      if(err){
+
+        sails.log.error(err);
+
+        viewConfig.error = err;
+
+        return res.view(viewConfig);
+
+      }else{
+
+        sails.log.info('PageController:newsEdit - found editable news: ' + news);
+
+        viewConfig.locals = {news: news};
+
+        return res.view(viewConfig);
+
+      }
+    })
+  },
+
+  /**
+   * `PageController.dashboard()`
+   */
+  newsCreate: function (req, res) {
+
+    // Config
+    var viewConfig = {
+      view: 'newsCreate',
+      layout: 'layoutDashboard'
+    }
+
     return res.view(viewConfig);
+    
   },
 
 };
