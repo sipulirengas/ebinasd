@@ -5,9 +5,42 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+const mainPageNewsLimit = 10;
+
 module.exports = {
 	
+  
 
+  /**
+   * `PageController.main()`
+   */
+  homepage: function (req, res) {
+
+    News.find().limit(mainPageNewsLimit).exec(function afterFind(err, news) {
+
+      if(err){
+
+        sails.log.error(err);
+
+        return res.view({
+          view: 'homepage',
+          layout: 'layout',
+          error: err
+        });
+
+      }
+
+      return res.view({
+        view: 'homepage',
+        layout: 'layout',
+        locals: {
+          news: news
+        }
+      });
+
+    })
+
+  },
 
   /**
    * `PageController.dashboard()`
@@ -17,6 +50,7 @@ module.exports = {
       view: 'dashboard',
       layout: 'layoutDashboard'
     });
-  }
+  },
+
 };
 

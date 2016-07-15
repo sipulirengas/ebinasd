@@ -37,6 +37,20 @@
             <hr>
             <p>Yielding form appear every Is to they're divided. Fill under stars man fly fill bring. For seas his called grass divided whales over very appear.</p>
             <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+            <% if(typeof news !== 'undefined') { %>
+                <% _.each(news, function(newsArticle){ %>
+
+                    <div>
+                        <h1><%= newsArticle.topic %></h1>
+                        <h1><%= newsArticle.content %></h1>
+                        <h1><%= newsArticle.description %></h1>
+                        <h1><%= newsArticle.image %></h1>
+                        <h1><%= newsArticle.externalLink %></h1>
+                        <h1><%= newsArticle.createdAt %></h1>
+                    </div>
+
+                <% }); %>
+            <% } %>
         </div>
     </div>
 </header>

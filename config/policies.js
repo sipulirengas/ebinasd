@@ -23,6 +23,15 @@ module.exports.policies = {
 
   'auth': {
     '*': ['passport']
+  },
+
+  'page': {
+  	'homepage': true	
+  },
+
+  'news': {
+  	'find': true,
+  	'findAll': true
   }
 
 };

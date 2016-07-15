@@ -26,16 +26,33 @@ var cssFilesToInject = [
 var jsFilesToInject = [
 
   // Load sails.io before everything else
-  'js/dependencies/sails.io.js',
+  'js/dependencies/jquery/jquery.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/**/*.js'
+  'js/*.js'
 ];
 
+var cssAdminFilesToInject = [
+  'styles/admin/**/*.css'
+];
+
+var jsAdminFilesToInject = [
+
+  // Load sails.io before everything else
+  'js/admin/dependencies/sails.io.js',
+  'js/admin/dependencies/jquery/jquery.js',
+
+  // Dependencies like jQuery, or Angular are brought in here
+  'js/admin/dependencies/**/*.js',
+
+  // All of the rest of your client-side js files
+  // will be injected here in no particular order.
+  'js/admin/**/*.js'
+];
 
 // Client-side HTML templates are injected using the sources below
 // The ordering of these templates shouldn't matter.
@@ -62,6 +79,12 @@ var tmpPath = '.tmp/public/';
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
 // they reside in the first place)
+module.exports.cssAdminFilesToInject = cssAdminFilesToInject.map(function(cssPath) {
+  return require('path').join('.tmp/public/', cssPath);
+});
+module.exports.jsAdminFilesToInject = jsAdminFilesToInject.map(function(jsPath) {
+  return require('path').join('.tmp/public/', jsPath);
+});
 module.exports.cssFilesToInject = cssFilesToInject.map(function(cssPath) {
   return require('path').join('.tmp/public/', cssPath);
 });

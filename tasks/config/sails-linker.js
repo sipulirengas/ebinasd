@@ -44,6 +44,20 @@ module.exports = function(grunt) {
       }
     },
 
+    devJsAdmin: {
+      options: {
+        startTag: '<!--SCRIPTS-ADMIN-->',
+        endTag: '<!--SCRIPTS-ADMIN END-->',
+        fileTmpl: '<script src="%s"></script>',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        '.tmp/public/**/*.html': require('../pipeline').jsAdminFilesToInject,
+        'views/**/*.html': require('../pipeline').jsAdminFilesToInject,
+        'views/**/*.ejs': require('../pipeline').jsAdminFilesToInject
+      }
+    },
+
     devJsRelative: {
       options: {
         startTag: '<!--SCRIPTS-->',
@@ -70,6 +84,20 @@ module.exports = function(grunt) {
         '.tmp/public/**/*.html': ['.tmp/public/min/production.min.js'],
         'views/**/*.html': ['.tmp/public/min/production.min.js'],
         'views/**/*.ejs': ['.tmp/public/min/production.min.js']
+      }
+    },
+
+    prodJsAdmin: {
+      options: {
+        startTag: '<!--SCRIPTS-ADMIN-->',
+        endTag: '<!--SCRIPTS-ADMIN END-->',
+        fileTmpl: '<script src="%s"></script>',
+        appRoot: '.tmp/public'
+      },
+      files: {
+        '.tmp/public/**/*.html': require('../pipeline').jsAdminFilesToInject,
+        'views/**/*.html': require('../pipeline').jsAdminFilesToInject,
+        'views/**/*.ejs': require('../pipeline').jsAdminFilesToInject
       }
     },
 
@@ -103,6 +131,21 @@ module.exports = function(grunt) {
       }
     },
 
+    devStylesAdmin: {
+      options: {
+        startTag: '<!--STYLES-ADMIN-->',
+        endTag: '<!--STYLES-ADMIN END-->',
+        fileTmpl: '<link rel="stylesheet" href="%s">',
+        appRoot: '.tmp/public'
+      },
+
+      files: {
+        '.tmp/public/**/*.html': require('../pipeline').cssAdminFilesToInject,
+        'views/**/*.html': require('../pipeline').cssAdminFilesToInject,
+        'views/**/*.ejs': require('../pipeline').cssAdminFilesToInject
+      }
+    },
+
     devStylesRelative: {
       options: {
         startTag: '<!--STYLES-->',
@@ -130,6 +173,22 @@ module.exports = function(grunt) {
         '.tmp/public/index.html': ['.tmp/public/min/production.min.css'],
         'views/**/*.html': ['.tmp/public/min/production.min.css'],
         'views/**/*.ejs': ['.tmp/public/min/production.min.css']
+      }
+    },
+
+
+    prodStylesAdmin: {
+      options: {
+        startTag: '<!--STYLES-ADMIN-->',
+        endTag: '<!--STYLES-ADMIN END-->',
+        fileTmpl: '<link rel="stylesheet" href="%s">',
+        appRoot: '.tmp/public'
+      },
+
+      files: {
+        '.tmp/public/**/*.html': require('../pipeline').cssAdminFilesToInject,
+        'views/**/*.html': require('../pipeline').cssAdminFilesToInject,
+        'views/**/*.ejs': require('../pipeline').cssAdminFilesToInject
       }
     },
 
