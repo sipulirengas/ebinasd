@@ -1,9 +1,30 @@
+<h1>Create new article</h1>
 
 <form class="createModel" model="news">
-      <input name="topic" value="topic" required>
-      <input name="content" value="content" required>
-      <input name="description" value="description" required>
-      <input name="image" value="image(Path)">
-      <input name="externalLink" value="externalLink">
-      <input type="submit" name="submit" />
+
+    <div class="form-group">
+      <label>Topic:</label>
+      <input type="text" class="form-control" name="topic" value="" placeholder="topic" required>
+    </div>
+    <div class="form-group">
+      <label>Content:</label>
+      <textarea type="text" class="form-control" name="content" value="" placeholder="content"required></textarea>
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <input type="text" class="form-control" name="description" value="" placeholder="description" required>
+    </div>
+    <div class="form-group">
+      <label>Image:</label>
+      <input type="text" class="form-control" name="image" value="" placeholder="image(Path)">
+    </div>
+    <div class="form-group">
+      <label>External link:</label>
+      <input type="text" class="form-control" name="externalLink" value="" placeholder="externalLink">
+    </div>
+
+    <button class="btn btn-default btn-success" type="submit" name="submit">Submit</button>
+    <button class="btn btn-default btn-warning" type="clear" name="clear">Clear</button>
+    <button class="btn btn-default btn-danger" type="close" name="close">Close</button>
+    
 </form>

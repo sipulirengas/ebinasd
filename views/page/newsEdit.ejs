@@ -1,13 +1,38 @@
-
 <% if(typeof news !== 'undefined') { %>
                 
-    <form class="updateModel" model="news" model-id="<%= news.id %>">
-      <input name="topic" value="<%= news.topic %>" required>
-      <input name="content" value="<%= news.content %>" required>
-      <input name="description" value="<%= news.description %>" required>
-      <input name="image" value="<%= news.image %>">
-      <input name="externalLink" value="<%= news.externalLink %>">
-      <input type="submit" name="submit" />
-    </form>
+<h1>Edit article <%= news.id %> - <%= news.topic %></h1>
+
+<form class="updateModel" model="news" model-id="<%= news.id %>">
+
+    <div class="form-group">
+      <label>Topic:</label>
+      <input type="text" class="form-control" name="topic" value="<%= news.topic %>" placeholder="topic" required>
+    </div>
+    <div class="form-group">
+      <label>Content:</label>
+      <textarea type="text" class="form-control" name="content" value="<%= news.content %>" placeholder="content"required></textarea>
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <input type="text" class="form-control" name="description" value="<%= news.description %>" placeholder="description" required>
+    </div>
+    <div class="form-group">
+      <label>Image:</label>
+      <input type="text" class="form-control" name="image" value="<%= news.image %>" placeholder="image(Path)">
+    </div>
+    <div class="form-group">
+      <label>External link:</label>
+      <input type="text" class="form-control" name="externalLink" value="<%= news.externalLink %>" placeholder="externalLink">
+    </div>
+
+    <button class="btn btn-default btn-success" type="submit" name="submit">Submit</button>
+    <button class="btn btn-default btn-warning" type="clear" name="clear">Clear</button>
+    <button class="btn btn-default btn-danger" type="close" name="close">Close</button>
+    
+</form>
 
 <% } %>
+
+
+
+

@@ -1,34 +1,41 @@
 
 <% if(typeof news !== 'undefined') { %>
-                
-    <table class="table table-striped" >
-        <thead>
-            <th>id</th>
-            <th>topic</th>
-            <th>content</th>
-            <th>description</th>
-            <th>image</th>
-            <th>externalLink</th>
-            <th>createdAt</th>
-            <th></th>
-        </thead>
-        <tbody>
-            <% _.each(news, function(newsArticle){ %>
-                <tr>
-                    <td><%= newsArticle.id %></td>
-                    <td><%= newsArticle.topic %></td>
-                    <td><%= newsArticle.content %></td>
-                    <td><%= newsArticle.description %></td>
-                    <td><%= newsArticle.image %></td>
-                    <td><%= newsArticle.externalLink %></td>
-                    <td><%= newsArticle.createdAt %></td>
-                    <td class="actions">
-                        <a href="edit/<%= newsArticle.id %>" class="edit btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-                        <a model="news" model-id="<%= newsArticle.id %>" class="delete btn btn-danger"><i class="fa fa-trash"></i></a>
-                    </td>
-                </tr>
-            <% }); %>
-        </tbody>
-    </table>
+
+    <div class="" style="margin-bottom: 15px">
+        <a href="news/create" class="btn btn-default btn-success">Add new article</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped news-table" >
+            <thead>
+                <th>id</th>
+                <th>topic</th>
+                <th>content</th>
+                <th>description</th>
+                <th>image</th>
+                <th>externalLink</th>
+                <th>createdAt</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <% _.each(news, function(newsArticle){ %>
+                    <tr>
+                        <td><%= newsArticle.id %></td>
+                        <td><%= newsArticle.topic %></td>
+                        <td><%= newsArticle.content %></td>
+                        <td><%= newsArticle.description %></td>
+                        <td><img class="img-responsive" src="<%= newsArticle.image %>"></td>
+                        <td><%= newsArticle.externalLink %></td>
+                        <td><%= newsArticle.createdAt %></td>
+                        <td class="actions">
+                            <a href="edit/<%= newsArticle.id %>" class="edit btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                            <a model="news" model-id="<%= newsArticle.id %>" class="delete btn btn-danger"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    
 
 <% } %>

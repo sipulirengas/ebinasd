@@ -1,24 +1,33 @@
 <header>
     <div class="header-content">
-        <div class="header-content-inner">
-            <h1 id="homeHeading">Yövuoro</br>Your Favorite Source of</br> UG partyes</h1>
-            <hr>
-            <p>Yielding form appear every Is to they're divided. Fill under stars man fly fill bring. For seas his called grass divided whales over very appear.</p>
-            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+        <div class="row">
+            <div class="col-md-9 header-info">
+                <h1 id="homeHeading">Yövuoro</br>Your Favorite Source of</br> UG partyes</h1>
+                <hr>
+                <p>Yielding form appear every Is to they're divided. Fill under stars man fly fill bring. For seas his called grass divided whales over very appear.</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a> 
+            </div>
+            
             <% if(typeof news !== 'undefined') { %>
+            <div class="col-md-3 header-news">
+                <h1><%= __('Nevest News') %></h1>
+
                 <% _.each(news, function(newsArticle){ %>
-
-                    <div>
-                        <h1><%= newsArticle.topic %></h1>
-                        <h1><%= newsArticle.content %></h1>
-                        <h1><%= newsArticle.description %></h1>
-                        <h1><%= newsArticle.image %></h1>
-                        <h1><%= newsArticle.externalLink %></h1>
-                        <h1><%= newsArticle.createdAt %></h1>
+                <a class="header-news--link" href="<%= newsArticle.externalLink %>">
+                    <img class="img-responsive" src="<%= newsArticle.image %>"</img>
+                    <div class="header-news--caption">
+                        <div class="header-news--caption--content">
+                            <p><%= newsArticle.topic %></p>
+                            <p><%= newsArticle.createdAt %></p>
+                        </div>
                     </div>
-
+                </a>
                 <% }); %>
+                
+            </div>
             <% } %>
+    
+            </div>
         </div>
     </div>
 </header>
