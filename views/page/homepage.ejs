@@ -1,7 +1,7 @@
 <header>
     <div class="header-content">
         <div class="row">
-            <div class="col-md-9 header-info">
+            <div class="col-sm-8 header-info">
                 <h1 id="homeHeading">Yövuoro</br>Your Favorite Source of</br> UG partyes</h1>
                 <hr>
                 <p>Yielding form appear every Is to they're divided. Fill under stars man fly fill bring. For seas his called grass divided whales over very appear.</p>
@@ -9,8 +9,8 @@
             </div>
             
             <% if(typeof news !== 'undefined') { %>
-            <div class="col-md-3 header-news">
-                <h1><%= __('Nevest News') %></h1>
+            <div class="col-sm-3 col-sm-offset-1 header-news white-bg">
+                <h1><%= __('News') %></h1>
 
                 <% _.each(news, function(newsArticle){ %>
                 <a class="header-news--link" href="<%= newsArticle.externalLink %>">
