@@ -44,9 +44,17 @@ module.exports = {
 
   },
 
-  /**
-   * `PageController.dashboard()`
-   */
+  code: function (req, res) {
+
+    // Config
+    var viewConfig = {
+      view: 'code',
+      layout: 'layout'
+    }
+
+    return res.view(viewConfig);
+  },
+
   dashboard: function (req, res) {
 
     // Config
@@ -58,9 +66,42 @@ module.exports = {
     return res.view(viewConfig);
   },
 
-  /**
-   * `PageController.dashboard()`
-   */
+  codeManage: function (req, res) {
+
+    // Config
+    var viewConfig = {
+      view: 'codeManage',
+      layout: 'layoutDashboard'
+    }
+
+    Token.find().exec(function afterFind(err, codes) {
+
+      if(err){
+
+        sails.log.error(err);
+
+        viewConfig.error = err;
+
+        return res.view(viewConfig);
+
+      }
+
+      if(codes.length > 0){
+        sails.log.info('PageController:CodeManage - found editable codes: ' + codes);
+      }else{
+        sails.log.info('PageController:CodeManage - no codes');
+      }
+
+      
+
+      viewConfig.locals = {codes: codes};
+
+      return res.view(viewConfig);
+    })
+
+    
+  },
+
   news: function (req, res) {
 
     // Config
@@ -90,9 +131,6 @@ module.exports = {
     })
   },
 
-  /**
-   * `PageController.dashboard()`
-   */
   newsEdit: function (req, res) {
 
     // Config
@@ -126,9 +164,6 @@ module.exports = {
     })
   },
 
-  /**
-   * `PageController.dashboard()`
-   */
   newsCreate: function (req, res) {
 
     // Config

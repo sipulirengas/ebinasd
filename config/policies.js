@@ -26,7 +26,8 @@ module.exports.policies = {
   },
 
   'page': {
-  	'homepage': true	
+  	'homepage': true,
+    'code': true	
   },
 
   'news': {

@@ -53,7 +53,7 @@ var api = {
 
 			if(jwRes.statusCode == 201){
 
-				var message =  model + ' article was created';
+				var message =  model + ' was created';
 				api.log(message, 'success');
 
 				loading = false
@@ -87,7 +87,7 @@ var api = {
 			if(debug){api.log('update() - response: ' + jwRes.statusCode + ' data: ' + resData);}
 
 			if(jwRes.statusCode == 200){
-				var message =  model + ' article #' + id + ' was saved';
+				var message =  model + ' #' + id + ' was saved';
 				api.log(message, 'success');
 
 				loading = false
@@ -120,7 +120,7 @@ var api = {
 			if(debug){api.log('delete() - response: ' + jwRes.statusCode + ' data: ' + resData);}
 
 			if(jwRes.statusCode == 200){
-				var message =  model + ' article #' + id + ' was deleted';
+				var message =  model + ' #' + id + ' was deleted';
 				$(element).closest('tr').fadeOut();
 				api.log(message, 'error', true);
 
@@ -158,7 +158,7 @@ $(function() {
 
 		api.update(this)
 
-	});	
+	});
 
 
 	$('.actions .delete').click(function(e) {

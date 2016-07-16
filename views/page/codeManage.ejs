@@ -1,0 +1,33 @@
+<form class="createModel" model="token">
+      <input name="name" value="name" required>
+      <input name="secret" value="secret" required>
+      <input type="submit" name="submit" />
+</form>
+
+<% if(typeof codes !== 'undefined') { %>
+                
+    <table class="table table-striped" >
+        <thead>
+            <th>id</th>
+            <th>Name</th>
+            <th>secret</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <% _.each(codes, function(code){ %>
+                <tr>
+                    <td><%= code.id %></td>
+                    <td><%= code.name %></td>
+                    <td><%= code.secret %></td>
+
+                    <td class="actions">
+                        <a href="edit/<%= code.id %>" class="edit btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                        <a model="token" model-id="<%= code.id %>" class="delete btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+<% } %>
+

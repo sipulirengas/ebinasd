@@ -92,9 +92,37 @@ var AuthController = {
    * @param {Object} res
    */
   register: function (req, res) {
-    res.view({
-      errors: req.flash('error')
-    });
+
+  var response;
+  var token;
+
+  if(req.param('token')){token = req.param('token')}
+
+  sails.log('token: ' + token)
+
+  if(!token){return res.redirect('/code')}
+
+  Token.findOne({secret:token}).exec(function afterFind(err, token){
+
+            if(err){
+                sails.log('TokenCheck - Could not find token with that secret err: ' + err)
+                return res.redirect('/code');
+            }
+            if(token){
+                return res.view({
+                         view: 'auth/register',
+                         errors: req.flash('error'),
+                         locals:{
+                            token:token
+                         }
+                       });
+            }
+            if(!token){
+              return res.redirect('/code');
+            }
+
+        });
+
   },
 
   /**
