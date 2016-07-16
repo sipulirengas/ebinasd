@@ -1,80 +1,173 @@
-// Settings
+//--Loading--
+
+var loading = false;
+
+//--Globals--
 
 var debug = true;
 
-// Initialization
+
+var api = {
+
+	//--Settings--
+
+	notify: $.notify,
+
+	//--Logging & notifying--
+
+	// Status defaults to info, always show to user on success
+	log: function(message,status,showUser){
+
+		var status = status || 'info';
+
+		if(showUser || status == 'success'){
+			this.notify(message, status);
+		}
+		console.log('Status: ' + status + ' - ' + message)
+
+	},
+
+	//--Model management--
+
+	// Expects form
+	add: function(element){
+
+		// Error check
+		var isForm = $(element).is('form');
+		if(!element || !isForm){api.log('add() - element not given or is not form','error'); return false}
+
+		// Set loading
+		loading = true;
+
+		// Settings
+		var data = $(element).serializeObject()
+		  , model = $(element).attr('model')
+		  , url = '/' + model;
+
+		if(debug){api.log('add() - data: ' + data + ' url: ' + url);}
+
+		// Post using sails.io, remember loading = false and return boolean when done
+		io.socket.post(url, data, function (resData, jwRes) {
+
+			if(debug){api.log('add() - response: ' + jwRes.statusCode + ' data: ' + resData);}
+
+			if(jwRes.statusCode == 201){
+
+				var message =  model + ' article was created';
+				api.log(message, 'success');
+
+				loading = false
+				return true
+			}
+		});
+
+	},
+
+	// Expects form
+	update: function(element){
+
+		// Error check
+		var isForm = $(element).is('form');
+		if(!element || !isForm){api.log('update() - element not given or is not form', 'error'); return false}
+
+		// Set loading
+		loading = true;
+
+		// Settings
+		var data = $(element).serializeObject()
+		  , model = $(element).attr('model')
+		  , id = $(element).attr('model-id')
+		  , url = '/' + model + '/' + id;
+
+		if(debug){api.log('update() - data: ' + data + ' url: ' + url);}
+
+		// Put using sails.io, remember loading = false and return boolean when done
+		io.socket.put(url, data, function (resData, jwRes) {
+
+			if(debug){api.log('update() - response: ' + jwRes.statusCode + ' data: ' + resData);}
+
+			if(jwRes.statusCode == 200){
+				var message =  model + ' article #' + id + ' was saved';
+				api.log(message, 'success');
+
+				loading = false
+				return true
+			}
+		});
+
+	},
+
+	// Expects a
+	delete: function(element){
+
+		// Error check
+		var isA = $(element).is('a')
+		if(!element || !isA){api.log('delete() - element not given or is not <a>'); return false}
+
+		// Set loading
+		loading = true;
+
+		// Settings
+		var id = $(element).attr('model-id')
+		  , model = $(element).attr('model')
+		  , url = '/' + model + '/' + id;
+
+		if(debug){api.log('delete() - id: ' + id + ' model: ' + model + ' url: ' + url);}
+
+		// Delete using sails.io, remember loading = false and return boolean when done
+		io.socket.delete(url, function (resData, jwRes) {
+
+			if(debug){api.log('delete() - response: ' + jwRes.statusCode + ' data: ' + resData);}
+
+			if(jwRes.statusCode == 200){
+				var message =  model + ' article #' + id + ' was deleted';
+				$(element).closest('tr').fadeOut();
+				api.log(message, 'error', true);
+
+				loading = false
+				return true
+			}
+		});
+
+	},
+
+}
 
 $(function() {
 
-	if(debug){console.log('dashboard - dom loaded');}
+	if(debug){api.log('Starting');}
 
 	//submit Handler for create model forms
 	$('.createModel').submit(function(e) {
 
-		e.preventDefault();
+		e.preventDefault()
 
-		var data = $(this).serializeObject()
-		  , model = $(this).attr('model')
-		  , url = '/' + model;
+		if(loading){return}
 
-		if(debug){console.log('dashboard:createModel - data: ' + data + ' url: ' + url);}
+		api.add(this);
 
-		io.socket.post(url, data, function (resData, jwRes) {
-
-			if(debug){console.log('dashboard:createModel - response: ' + jwRes.statusCode + ' data: ' + resData);}
-
-			if(jwRes.statusCode == 201){
-				var message =  model + ' article was created';
-				$.notify( message, 'success');
-			}
-		});
 
 	});		
 
 	//submit Handler for create model forms
 	$('.updateModel').submit(function(e) {
 
-		e.preventDefault();
+		e.preventDefault()
 
-		var data = $(this).serializeObject()
-		  , model = $(this).attr('model')
-		  , id = $(this).attr('model-id')
-		  , url = '/' + model + '/' + id;
+		if(loading){return}
 
-		if(debug){console.log('dashboard:updateModel - data: ' + data + ' url: ' + url);}
-
-		io.socket.put(url, data, function (resData, jwRes) {
-
-			if(debug){console.log('dashboard:updateModel - response: ' + jwRes.statusCode + ' data: ' + resData);}
-
-			if(jwRes.statusCode == 200){
-				var message =  model + ' article #' + id + ' was saved';
-				$.notify( message, 'success');
-			}
-		});
+		api.update(this)
 
 	});	
 
 
 	$('.actions .delete').click(function(e) {
 
-		var element = $(this)
-		  , id = element.attr('model-id')
-		  , model = element.attr('model')
-		  , url = '/' + model + '/' + id;
+		e.preventDefault()
 
-		if(debug){console.log('dashboard:createModel - id: ' + id + ' model: ' + model + ' url: ' + url);}
+		if(loading){return}
 
-		io.socket.delete(url, function (resData, jwRes) {
-
-			if(debug){console.log('dashboard:createModel - response: ' + jwRes.statusCode + ' data: ' + resData);}
-
-			if(jwRes.statusCode == 200){
-				var message =  model + ' article #' + id + ' was deleted';
-				element.parent().parent('tr').fadeOut();
-				$.notify( message, 'error');
-			}
-		});
+		api.delete(this)		
 
 	});
     
