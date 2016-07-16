@@ -1,31 +1,12 @@
 <header>
     <div class="header-content">
         <div class="row">
-            <div class="col-sm-8 header-info">
+            <div class="col-sm-12 header-info">
                 <h1 id="homeHeading">Yövuoro</br>Your Favorite Source of</br> UG partyes</h1>
                 <hr>
                 <p>Yielding form appear every Is to they're divided. Fill under stars man fly fill bring. For seas his called grass divided whales over very appear.</p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a> 
-            </div>
-            
-            <% if(typeof news !== 'undefined') { %>
-            <div class="col-sm-3 col-sm-offset-1 header-news white-bg">
-                <h1><%= __('News') %></h1>
-
-                <% _.each(news, function(newsArticle){ %>
-                <a class="header-news--link" href="<%= newsArticle.externalLink %>">
-                    <img class="img-responsive" src="<%= newsArticle.image %>"</img>
-                    <div class="header-news--caption">
-                        <div class="header-news--caption--content">
-                            <p><%= newsArticle.topic %></p>
-                            <p><%= newsArticle.createdAt %></p>
-                        </div>
-                    </div>
-                </a>
-                <% }); %>
-                
-            </div>
-            <% } %>
+    </div>
     
             </div>
         </div>
@@ -34,14 +15,34 @@
 
 <section class="bg-primary" id="about">
     <div class="container">
+        <h2 class="section-heading text-center">News</h2>
+        <hr class="light">
+                
+        <!-- Projects Row -->
+            <% if(typeof news !== 'undefined') { %>
+        
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">News</h2>
-                <hr class="light">
-                <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
-            </div>
+
+                <% _.each(news, function(newsArticle){ %>
+                        <div class="col-sm-4 news-item">
+                            <div style="background-color:white;">
+                                    <img class="img-responsive" src="<%= newsArticle.image %>" alt="<%= newsArticle.topic %>">
+                                <div class="news-item--container">
+                                    <h3 class="news-item--title"><%= newsArticle.topic %></h3>
+                                    <p><%= newsArticle.description %></p>
+                                    <small><%= newsArticle.createdAt %></small>
+                                </div>
+                            </div>
+                        </div>
+                <% }); %>
+            
         </div>
+        
+        
+            <% } %>
+            
+                
+                
     </div>
 </section>
 

@@ -105,17 +105,10 @@ aside {
 .navbar-default .nav > li.active > a:focus:hover {
   background-color: transparent;
 }
-
-    
-    header .header-content .header-info {
-    padding: 30px;
-    background: rgba(0,0,0,0.8);
-    }
-
 @media (min-width: 768px) {
   .navbar-default {
     background-color: transparent;
-    //border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
   }
   .navbar-default .navbar-header .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
@@ -126,7 +119,7 @@ aside {
   }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 0.7);
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
@@ -152,9 +145,6 @@ aside {
   .navbar-default.affix .nav > li > a:focus:hover {
     color: #F05F40;
   }
-    header .header-content .white-bg {
-    background-color:rgba(255, 255, 255, 0.9);
-    }
 }
 header {
   position: relative;
@@ -167,6 +157,7 @@ header {
   background-position: center;
   background-image: url('../images/header-bg.png');
   text-align: center;
+  color: white;
 }
 header .header-content {
   position: relative;
@@ -174,63 +165,22 @@ header .header-content {
   padding: 100px 15px 100px;
   width: 100%;
 }
-header .header-content .header-info h1 {
+header .header-content .header-content-inner h1 {
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 30px;
-  color:rgba(255, 255, 255, 0.9);
 }
-header .header-content .header-info hr {
+header .header-content .header-content-inner hr {
   margin: 30px auto;
 }
-header .header-content .header-info p {
+header .header-content .header-content-inner p {
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   margin-bottom: 50px;
 }
-
-header .header-content .header-news {
-  margin-top: 20px;
-}
-
-header .header-content .header-news h1 {
-  color:rgba(0, 0, 0, 0.9);
-}
-
-header .header-content .header-news .header-news--link {
-    position: relative;
-    display: block;
-    margin-bottom: 10px;
-}
-
-header .header-content .header-news .header-news--link:hover .header-news--caption {
-    opacity:1;
-}
-
-
-header .header-content .header-news .header-news--caption {
-    color: #fff;
-    opacity: 0;
-    display: block;
-    background: rgba(240,95,64,.9);
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    transition: all .35s;
-}
-header .header-content .header-news .header-news--caption--content {
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 @media (min-width: 768px) {
   header {
     min-height: 100%;
@@ -248,17 +198,16 @@ header .header-content .header-news .header-news--caption--content {
     margin-left: auto;
     margin-right: auto;
   }
-  header .header-content .header-info h1 {
+  header .header-content .header-content-inner h1 {
     font-size: 50px;
   }
-  header .header-content .header-info p {
+  header .header-content .header-content-inner p {
     font-size: 18px;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
 }
-
 .section-heading {
   margin-top: 0;
 }
@@ -266,13 +215,9 @@ header .header-content .header-news .header-news--caption--content {
   max-width: 400px;
   margin: 50px auto 0;
 }
-
 @media (min-width: 992px) {
   .service-box {
     margin: 20px auto 0;
-  }
-  header .header-content .header-news {
-    margin-top: 0;
   }
 }
 .service-box p {
@@ -468,4 +413,27 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #222222;
+}
+
+
+
+
+
+
+
+
+
+
+.news-item {
+    margin-bottom: 25px;
+    color:#333;
+}
+
+.news-item .news-item--title {
+    margin-top:0;
+}
+
+
+.news-item .news-item--container {
+    padding: 10px;
 }
