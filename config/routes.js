@@ -48,10 +48,15 @@ module.exports.routes = {
   'get /dashboard/news/edit/:id':   'PageController.newsEdit',
   'get /dashboard/news/create':     'PageController.newsCreate',
 
+  'get /dashboard/code':            'PageController.codeManage',
+
+  'get /code':                      'PageController.code',
+
 
   'get /login':                     'AuthController.login',
   'post /logout':                   'AuthController.logout',
   'get /register':                  'AuthController.register',
+  'get /register/:token':           'AuthController.register',
 
   'post /auth/local':               'AuthController.callback',
   'post /auth/local/:action':       'AuthController.callback',
