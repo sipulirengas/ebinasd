@@ -115,7 +115,7 @@ var AuthController = {
 
   //       });
 
-  },
+  )},
 
   /**
    * Create a third-party authentication endpoint

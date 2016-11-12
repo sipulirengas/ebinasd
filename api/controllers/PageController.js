@@ -139,7 +139,7 @@ module.exports = {
       layout: 'layoutDashboard'
     }
 
-    var id = req.param('id')
+    var id = req.param('id');
 
     // Find news and return view
     News.findOne({id: id}).exec(function afterFind(err, news) {

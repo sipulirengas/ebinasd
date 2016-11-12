@@ -28,7 +28,7 @@
                         <td><%= newsArticle.externalLink %></td>
                         <td><%= newsArticle.createdAt %></td>
                         <td class="actions">
-                            <a href="edit/<%= newsArticle.id %>" class="edit btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="news/edit/<%= newsArticle.id %>" class="edit btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
                             <a model="news" model-id="<%= newsArticle.id %>" class="delete btn btn-danger"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>

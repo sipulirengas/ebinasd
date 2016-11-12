@@ -23,7 +23,8 @@ var api = {
 		if(showUser || status == 'success'){
 			this.notify(message, status);
 		}
-		console.log('Status: ' + status + ' - ' + message)
+    
+		console.log('Status: ' + status + ' - ' + message);
 
 	},
 
@@ -55,12 +56,15 @@ var api = {
 
 				var message =  model + ' was created';
 				api.log(message, 'success');
+        
+        // TODO: Redirect to model management page        
+        //window.location.href = "/dashboard/" + model;
 
-				loading = false
-				return true
+				loading = false;
+				return true;
 			}
 		});
-
+        
 	},
 
 	// Expects form
@@ -90,8 +94,8 @@ var api = {
 				var message =  model + ' #' + id + ' was saved';
 				api.log(message, 'success');
 
-				loading = false
-				return true
+				loading = false;
+				return true;
 			}
 		});
 
@@ -124,11 +128,47 @@ var api = {
 				$(element).closest('tr').fadeOut();
 				api.log(message, 'error', true);
 
-				loading = false
-				return true
+				loading = false;
+				return true;
 			}
 		});
 
+	},
+  
+	// Clear form content
+	clear: function(element){
+
+		// Error check
+		var isForm = $(element).is('button');
+		if(!element || !isForm){api.log('clear() - element not given or is not button', 'error'); return false}
+
+		// Set loading
+		loading = true;
+    console.log(element);
+
+		// Settings
+    
+		var button = $(element);
+
+		if(debug){api.log('clear() - element: ' + button);}
+    
+    // start code from here
+    // TODO: Make this really clear form
+                      
+    button.parent()[0].reset();
+    button.blur();    
+    
+    console.log("form: " + button.parent()[0]);
+    
+		var message =  'form was cleared';
+		api.log(message, 'success');
+
+		loading = false;
+		return true;
+	},
+  // close form
+	close: function(element){
+    // TODO: close form page
 	},
 
 }
@@ -140,7 +180,7 @@ $(function() {
 	//submit Handler for create model forms
 	$('.createModel').submit(function(e) {
 
-		e.preventDefault()
+		e.preventDefault();
 
 		if(loading){return}
 
@@ -152,22 +192,42 @@ $(function() {
 	//submit Handler for create model forms
 	$('.updateModel').submit(function(e) {
 
-		e.preventDefault()
+		e.preventDefault();
 
 		if(loading){return}
 
-		api.update(this)
+		api.update(this);
 
 	});
 
 
 	$('.actions .delete').click(function(e) {
 
-		e.preventDefault()
+		e.preventDefault();
 
 		if(loading){return}
 
-		api.delete(this)		
+		api.delete(this);
+
+	});
+  
+	$('.js-clearForm').click(function(e) {
+
+		e.preventDefault();
+
+		if(loading){return}
+
+		api.clear(this);
+
+	});
+  
+	$('.js-closeForm').click(function(e) {
+
+		e.preventDefault();
+
+		if(loading){return}
+
+		api.close(this);
 
 	});
     
