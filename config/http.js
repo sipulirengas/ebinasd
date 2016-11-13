@@ -9,6 +9,8 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.http.html
  */
 
+var showResponseTime = true;
+
 module.exports.http = {
 
   /****************************************************************************
@@ -30,23 +32,32 @@ module.exports.http = {
   *                                                                          *
   ***************************************************************************/
 
-    // order: [
-    //   'startRequestTimer',
-    //   'cookieParser',
-    //   'session',
-    //   'myRequestLogger',
-    //   'bodyParser',
-    //   'handleBodyParserError',
-    //   'compress',
-    //   'methodOverride',
-    //   'poweredBy',
-    //   '$custom',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    //   '404',
-    //   '500'
-    // ],
+    order: [
+      '_startRequestTime', // <<< this should be FIRST 
+      'cookieParser',
+      'session',
+      'myRequestLogger',
+      'bodyParser',
+      'handleBodyParserError',
+      'compress',
+      'methodOverride',
+      '$custom',
+      'router',
+      'www',
+      'favicon',
+      '404',
+      '500'
+    ],
+
+    _startRequestTime: function(req, res, next) {
+      if(showResponseTime){
+        req.on("end", function() {
+          sails.log.info(req.path + ' response time: ' + res.getHeader('X-Response-Time'));
+        });
+        req._startRequestTime = process.hrtime();
+      }
+      next();
+    }
 
   /****************************************************************************
   *                                                                           *
@@ -76,6 +87,7 @@ module.exports.http = {
   ***************************************************************************/
 
     // bodyParser: require('skipper')({strict: true})
+    
 
   },
 
