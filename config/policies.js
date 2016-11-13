@@ -27,7 +27,9 @@ module.exports.policies = {
 
   'page': {
   	'homepage': true,
-    'code': true	
+    'code': true,
+    'publicNews': [true],
+    'publicNewsID': [true]
   },
 
   'news': {

@@ -22,3 +22,36 @@
               <span class="text-muted">Something else</span>
             </div>
           </div>
+<% if(typeof news !== 'undefined') { %>
+<section id="news">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+            <h2 class="section-heading text-center bg-white">News</h2>
+        </div>
+
+          <% _.each(news, function(newsArticle){ %>
+              <div class="col-sm-4 news-item">
+                  <div style="background-color:white;">
+                    
+                    <% if(newsArticle.image){%>
+                      <img class="img-responsive" src="<%= newsArticle.image %>" alt="<%= newsArticle.topic %>">
+                    <% } %>
+                    
+                      <div class="news-item--container">
+                          <h3 class="news-item--title">
+                              <%= newsArticle.topic %>
+                          </h3>
+                          <p>
+                              <%= newsArticle.description %>
+                          </p>
+                          <small><%= newsArticle.createdAt %></small>
+                      </div>
+                  </div>
+              </div>
+              <% }); %>
+
+      </div>
+  </div>
+</section>
+<% } %>

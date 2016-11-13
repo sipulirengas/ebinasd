@@ -16,7 +16,12 @@ module.exports = {
   	externalLink: 	{ type: 'string' },
   	
   	//event: 			{ model: 'event' }
-
-  }
+    
+  },
+  
+  findNewsByUserID: function (ID, limit) {
+    return 'useriobjekti'
+  },
+  
 };
 

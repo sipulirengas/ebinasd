@@ -43,7 +43,78 @@ module.exports = {
     })
 
   },
+  
+  /**
+   * `PageController.publicNews()`
+   */
+  publicNews: function (req, res) {
 
+    // Config
+    var viewConfig = {
+        view: 'publicNews',
+        layout: 'layout',
+        locals: {},
+        newsID: ''
+      }
+
+    // Find news and return view
+    News.find().limit(mainPageNewsLimit).exec(function afterFind(err, news) {
+
+      if(err){
+
+        sails.log.error(err);
+
+        viewConfig.error = err;
+
+        return res.view(viewConfig);
+
+      }else{
+
+        viewConfig.locals.news = news;
+
+        return res.view(viewConfig);
+
+      }
+    })
+
+  },
+  
+  /**
+   * `PageController.publicNews()`
+   */
+  publicNewsID: function (req, res) {
+
+    // Config
+    var viewConfig = {
+          view: 'publicNewsID',
+          layout: 'layout',
+          locals: {},
+          newsID: req.param('id')
+        }
+    
+
+    // Find news and return view
+    News.find().limit(mainPageNewsLimit).exec(function afterFind(err, news) {
+
+      if(err){
+
+        sails.log.error(err);
+
+        viewConfig.error = err;
+
+        return res.view(viewConfig);
+
+      }else{
+
+        viewConfig.locals.news = news;
+
+        return res.view(viewConfig);
+
+      }
+    })
+
+  },
+  
   code: function (req, res) {
 
     // Config
@@ -58,10 +129,18 @@ module.exports = {
   dashboard: function (req, res) {
 
     // Config
+    var userID; //hae tähän jostain esim req tai res käyttäjän id
+    var limit = 0; // tähä tulee numero kuinka monta uutista haluut
     var viewConfig = {
       view: 'dashboard',
-      layout: 'layoutDashboard'
+      layout: 'layoutDashboard',
+      locals: {
+        news: News.findNewsByUserID(userID, limit)
+      }
     }
+    
+   
+    News.findNewsByUserID(userID, limit)
 
     return res.view(viewConfig);
   },

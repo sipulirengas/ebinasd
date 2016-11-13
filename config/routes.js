@@ -33,6 +33,10 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/':                              'PageController.homepage',
+  //TODO osotteet                     controlleri    funktio
+  '/news':                          'PageController.publicNews',
+  '/news/:id':                      'PageController.publicNewsID',
+  //TODO END
   '/dashboard':                     'PageController.dashboard',
 
   /***************************************************************************
