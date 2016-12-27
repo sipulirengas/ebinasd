@@ -143,7 +143,6 @@ module.exports = {
     News.find().exec(function afterFind(err, news) {
       console.log("Number of news: " + news.length);
       viewConfig.locals.numberOfTotalNews = news.length;
-      viewConfig.locals.numberOfUserNews = 5;
       console.log("news: " + JSON.stringify(news));
       
       News.find().where({'author':req.user.username}).exec(function afterFind(err, news) {

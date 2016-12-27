@@ -1,1 +1,27 @@
-<%= newsID %> single view
+<% if(typeof news !== 'undefined') { %>
+
+<header id="topHeader">
+<!-- image backgroundiks tähän -->
+</header>
+<article style="padding: 60px 0;">
+  <div class="container">
+  <div class="row">
+
+
+                    <div class="col-md-12">
+                            <p><%= news.id %></p>
+                        <p><%= news.topic %></p>
+                        <p><%= news.content %></p>
+                        <p><%= news.description %></p>
+                        <p><img class="img-responsive" src="<%= news.image %>"></p>
+                        <p><%= news.externalLink %></p>
+                        <p><%= news.createdAt %></p>
+    
+    
+                    </div>
+    
+      </div>
+</div>
+  </article>
+
+<% } %>

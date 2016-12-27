@@ -1,1 +1,24 @@
-public news
+<% if(typeof news !== 'undefined') { %>
+  <div class="container">
+<div class="row">
+  
+
+
+                <% _.each(news, function(newsArticle){ %>
+                    <div class="col-md-3">
+                            <p><%= newsArticle.id %></p>
+                        <p><%= newsArticle.topic %></p>
+                        <p><%= newsArticle.content %></p>
+                        <p><%= newsArticle.description %></p>
+                        <p><img class="img-responsive" src="<%= newsArticle.image %>"></p>
+                        <p><%= newsArticle.externalLink %></p>
+                        <p><%= newsArticle.createdAt %></p>
+    
+    
+                    </div>
+
+                <% }); %>
+    
+      </div>
+</div>
+<% } %>
