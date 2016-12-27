@@ -14,13 +14,9 @@ module.exports = {
   	description: 	{ type: 'string', required: true },
   	image: 			{ type: 'string' },
   	externalLink: 	{ type: 'string' },
-  	
+    author: { type: 'string' }
   	//event: 			{ model: 'event' }
     
-  },
-  
-  findNewsByUserID: function (ID, limit) {
-    return 'useriobjekti'
-  },
+  }
   
 };

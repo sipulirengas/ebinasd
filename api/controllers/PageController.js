@@ -53,9 +53,8 @@ module.exports = {
     var viewConfig = {
         view: 'publicNews',
         layout: 'layout',
-        locals: {},
-        newsID: ''
-      }
+        locals: {}
+    }
 
     // Find news and return view
     News.find().exec(function afterFind(err, news) {
@@ -94,7 +93,7 @@ module.exports = {
     
 
     // Find news and return view
-    News.find().exec(function afterFind(err, news) {
+    News.findOne({id: viewConfig.newsID}).exec(function afterFind(err, news) {
 
       if(err){
 
@@ -130,19 +129,24 @@ module.exports = {
 
     // Config
     var userID; //hae tähän jostain esim req tai res käyttäjän id
-    var limit = 0; // tähä tulee numero kuinka monta uutista haluut
     var viewConfig = {
       view: 'dashboard',
       layout: 'layoutDashboard',
       locals: {
-        news: News.findNewsByUserID(userID, limit)
+        numberOfTotalNews: '',
+        news: ' '
       }
     }
     
-   
-    News.findNewsByUserID(userID, limit)
-
-    return res.view(viewConfig);
+        
+    News.find().exec(function afterFind(err, news) {
+      console.log("Number of news: " + news.length);
+      viewConfig.locals.numberOfTotalNews = news.length;
+      console.log("news: " + JSON.stringify(news));
+      return res.view(viewConfig);
+    })
+    
+    
   },
 
   codeManage: function (req, res) {

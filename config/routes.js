@@ -39,8 +39,6 @@ module.exports.routes = {
   '/news1':                         'PageController.publicNews',
   '/news1/:id':                     'PageController.publicNewsID',
 
-  '/news':                          'PageController.publicNews',
-  '/news/:id':                      'PageController.publicNewsID',
   //TODO END
   '/dashboard':                     'PageController.dashboard',
 
