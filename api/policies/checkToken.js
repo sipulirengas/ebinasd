@@ -5,7 +5,7 @@ module.exports = function(req, res, next) {
 
   sails.log('checkTokenService: '  + checkToken);
 
-  if (checkToken) {
+  if (checkToken || req.session.authenticated) {
     return next();
   }
 
