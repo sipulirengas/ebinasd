@@ -9,12 +9,12 @@ module.exports = {
 
   attributes: {
 
-  	topic: 			{ type: 'string', required: true },
-  	content: 		{ type: 'text', required: true },
-  	description: 	{ type: 'string', required: true },
-  	image: 			{ type: 'string' },
-  	externalLink: 	{ type: 'string' },
-    author: { type: 'string' }
+  	topic: 			   { type: 'string', required: true },
+  	content: 		   { type: 'text', required: true },
+  	description: 	 { type: 'string', required: true },
+  	image: 			   { type: 'string' },
+  	externalLink:  { type: 'string' },
+    author:        { type: 'string' }
   	//event: 			{ model: 'event' }
     
   }

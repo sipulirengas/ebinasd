@@ -33,7 +33,6 @@ module.exports.policies = {
   },
 
   'news': {
-    'create': ['setAuthor'],
   	'find': true,
   	'findAll': true
   }

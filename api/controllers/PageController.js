@@ -134,17 +134,23 @@ module.exports = {
       layout: 'layoutDashboard',
       locals: {
         numberOfTotalNews: '',
+        numberOfUserNews: '',
         news: ' '
       }
     }
     
-        
+
     News.find().exec(function afterFind(err, news) {
       console.log("Number of news: " + news.length);
       viewConfig.locals.numberOfTotalNews = news.length;
+      viewConfig.locals.numberOfUserNews = 5;
       console.log("news: " + JSON.stringify(news));
-      return res.view(viewConfig);
-    })
+      
+      News.find().where({'author':req.user.username}).exec(function afterFind(err, news) {
+        viewConfig.locals.numberOfUserNews = news.length;
+        return res.view(viewConfig);
+      }
+    )})
     
     
   },
@@ -252,7 +258,10 @@ module.exports = {
     // Config
     var viewConfig = {
       view: 'newsCreate',
-      layout: 'layoutDashboard'
+      layout: 'layoutDashboard',
+      locals: {
+        author: req.user.username
+      }
     }
 
     return res.view(viewConfig);
