@@ -36,14 +36,11 @@ module.exports.routes = {
 
   '/':                              'PageController.homepage',
   //TODO osotteet                     controlleri    funktio
-<<<<<<< HEAD
   '/news1':                         'PageController.publicNews',
   '/news1/:id':                     'PageController.publicNewsID',
 
-=======
   '/news':                          'PageController.publicNews',
   '/news/:id':                      'PageController.publicNewsID',
->>>>>>> 29dfea9de18b11f874962a419cbed4f1986fc3dd
   //TODO END
   '/dashboard':                     'PageController.dashboard',
 
