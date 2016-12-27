@@ -66,7 +66,7 @@ var api = {
 				return true;
 			}
 		});
-        
+        loading = false;
 	},
 
 	// Expects form
@@ -100,6 +100,7 @@ var api = {
 				return true;
 			}
 		});
+		loading = false;
 
 	},
 
@@ -134,6 +135,7 @@ var api = {
 				return true;
 			}
 		});
+		loading = false;
 
 	}
 
