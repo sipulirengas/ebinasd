@@ -34,6 +34,8 @@ module.exports.routes = {
 
   '/':                              'PageController.homepage',
   //TODO osotteet                     controlleri    funktio
+  '/news1':                         'PageController.publicNews',
+  '/news1/:id':                     'PageController.publicNewsID',
 
   //TODO END
   '/dashboard':                     'PageController.dashboard',

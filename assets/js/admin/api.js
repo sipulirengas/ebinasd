@@ -5,13 +5,14 @@ var loading = false;
 //--Globals--
 
 var debug = true;
+var notify = $.notify;
+notify.defaults( { globalPosition: 'bottom right' } );
 
 
 var api = {
 
 	//--Settings--
-
-	notify: $.notify,
+	notify: notify,
 
 	//--Logging & notifying--
 
@@ -58,11 +59,10 @@ var api = {
 
 				var message =  model + ' was created';
 				api.log(message, 'success');
-        
-        // TODO: Redirect to model management page        
-        //window.location.href = "/dashboard/" + model;
 
 				loading = false;
+        // TODO: fix: remove static text and use basePath + model + wait notification
+        //window.location.pathname = "/dashboard/news";
 				return true;
 			}
 		});

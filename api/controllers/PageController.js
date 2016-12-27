@@ -5,7 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-const mainPageNewsLimit = 10;
+const mainPageNewsLimit = 3;
 
 module.exports = {
 	
@@ -58,7 +58,7 @@ module.exports = {
       }
 
     // Find news and return view
-    News.find().limit(mainPageNewsLimit).exec(function afterFind(err, news) {
+    News.find().exec(function afterFind(err, news) {
 
       if(err){
 
@@ -94,7 +94,7 @@ module.exports = {
     
 
     // Find news and return view
-    News.find().limit(mainPageNewsLimit).exec(function afterFind(err, news) {
+    News.find().exec(function afterFind(err, news) {
 
       if(err){
 
